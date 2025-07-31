@@ -14,7 +14,7 @@ ja:
       sponsorship/note: &note
         body: 'その他の連絡事項'
       sponsorship/customization_request: &customization_request
-        body: 'スポンサープランについての詳細・連絡事項'
+        body: 'サポータープランについての詳細・連絡事項'
       sponsorship/billing_request: &billing_request
         body: '請求に関する連絡事項'
 
@@ -39,14 +39,14 @@ ja:
           attributes:
             plan:
               unavailable: "は受付を終了しています"
-              unchangeable_after_finalization: "はスポンサーシップ確定後の変更は原則として受け付けていません"
+              unchangeable_after_finalization: "はサポーターシップ確定後の変更は原則として受け付けていません"
               no_plan_not_allowed: "を選択してください (その他を選ぶことはできません)"
             organization:
-              taken: "の重複: 同じ組織から既にスポンサーシップを受け付けている可能性があります。詳細はお問い合わせください"
+              taken: "の重複: 同じ組織から既にサポーターシップを受け付けている可能性があります。詳細はお問い合わせください"
             booth_requested:
-              not_eligible: "は選択されたスポンサープランでは対象外です"
+              not_eligible: "は選択されたサポータープランでは対象外です"
             commercial_message_movie_requested:
-              not_eligible: "は選択されたスポンサープランでは対象外です"
+              not_eligible: "は選択されたサポータープランでは対象外です"
             profile:
               too_long: "が長過ぎます。選択されたプランでは %{maximum} 文字程度が上限となっています。"
 
@@ -66,14 +66,14 @@ ja:
     application:
       brand: 'Sponsorships'
       conferences: '全てのイベント'
-      sponsorships_switch: '申込済みのスポンサーシップ'
+      sponsorships_switch: '申込済みのサポーターシップ'
       login: 'ログイン'
       logout: 'ログアウト'
 
   sessions:
     new:
       header: Log in
-      description: "スポンサーシップ申し込みで利用したメールアドレスを入力してください。"
+      description: "サポーターシップ申し込みで利用したメールアドレスを入力してください。"
       email_address: "Eメールアドレス"
       submit: "進む"
     claim:
@@ -83,43 +83,43 @@ ja:
       email_sent: "ログインに必要なリンクをメールで送信しました。"
   session_token_mailer:
     notify:
-      subject: "スポンサーポータル用のログインリンクをお届けします"
+      subject: "サポーターポータル用のログインリンクをお届けします"
       greeting: ""
       explanation: "以下のリンクを利用してログインすることができます:"
       expiry: "このリンクは %{ts} に失効しますが、失効するまで何度でも利用できます。"
   sponsorship_welcome_mailer:
     user_email:
-      subject: "スポンサーシップ申込確認"
+      subject: "サポーターシップ申込確認"
     admin_email:
       subject: "New sponsorship application from: %{name}"
   ticket_retrieval_mailer:
     notify:
-      subject: 'スポンサーチケット URL のお知らせ'
+      subject: 'サポーターチケット URL のお知らせ'
   unauthorized_ticket_warning_mailer:
     notify:
-      subject: 'スポンサーチケット忘れの参加者を受付しました'
+      subject: 'サポーターチケット忘れの参加者を受付しました'
 
 
   sponsorships:
     form:
       optional: '(任意)'
-      header: '%{name} スポンサーシップ申込フォーム'
+      header: '%{name} サポーターシップ申込フォーム'
       copy:
         header: '過去の申込情報を利用する'
-        explanation: '過去の申込情報を利用することができます。下記より既存のスポンサーシップ申込を選択してください。'
+        explanation: '過去の申込情報を利用することができます。下記より既存のサポーターシップ申込を選択してください。'
       contact: '連絡先'
-      email_cc_help: '上記の E メールアドレスの他に、各種連絡において送信先として加えるアドレス (CC) を入力してください。複数のアドレスをカンマ (,) 区切りで入力できます。尚、CC 先のアドレスではスポンサーポータルへの新規ログインはできません。'
+      email_cc_help: '上記の E メールアドレスの他に、各種連絡において送信先として加えるアドレス (CC) を入力してください。複数のアドレスをカンマ (,) 区切りで入力できます。尚、CC 先のアドレスではサポーターポータルへの新規ログインはできません。'
       billing: '請求情報'
       specify_alternate_billing_contact: '請求に関して別の連絡・送付先を指定する'
       billing_request_help: '請求に関しての要求、特に特別な契約や申込書のやり取りが必要、請求期日に関するご要望がある場合などがあれば、その旨ご記入ください。'
-      plan: 'スポンサープラン'
+      plan: 'サポータープラン'
       plans: 'プラン一覧:'
       plan_explanation:
         guests:
           zero: 'ゲストなし'
           one: 'ゲスト 1 人'
           other: 'ゲスト %{count} 人'
-        talk: 'スポンサートーク'
+        talk: 'サポータートーク'
         booth:
           zero: 'ブースなし'
           one: 'ブース出展可能'
@@ -130,24 +130,23 @@ ja:
           one: '1文字'
           other: 'およそ %{count} 文字以内'
         auto_acceptance: '選択されているプラン %{plan} では申し込み後即座に申し込みが確定となります。'
-        not_auto_acceptance: '選択されているプラン %{plan} ではスポンサー申込について後日確定となります。申し込み後のアナウンスをお待ちください。'
+        not_auto_acceptance: '選択されているプラン %{plan} ではサポーター申込について後日確定となります。申し込み後のアナウンスをお待ちください。'
       plan_sold_out: '受付終了'
       plan_closed: '受付期間終了'
-      booth: 'スポンサーブース'
+      booth: 'サポーターブース'
       booth_uneligible_plan_selected: '選択されたプランではブース出展はできません (%{plans} プランのみが対象となります)'
       commercial_message_movie: 'CM映像放映'
       commercial_message_movie_uneligible_plan_selected: '選択されたプランではCM映像放映はできません (%{plans} プランのみが対象となります)'
       information: 'サイト掲載情報'
       information_help: |
-        ウェブサイトや会場に掲載するためのスポンサーの情報をご提供ください。
+        ウェブサイトや会場に掲載するためのサポーターの情報をご提供ください。
       logo: 'ロゴ'
       download_logo: '(以前にアップロードしたファイルをダウンロードする)'
       logo_help_html: |
-        Webサイトや会場にて掲示するため、ロゴファイルをアップロードしてください。
-        ロゴファイル画像には規定の仕様形式がございます。
-        <a href="https://esa-pages.io/p/sharing/14929/posts/628/b8d3eb89cc8ad85d0573.html">テンプレートREADME</a>をご確認の上、提出をお願いいたします。
+        Webサイトや会場にて掲示するため、ロゴファイルをアップロードしてください。掲示・グッズ作成のために、こちらで拡大・縮小・モノクロ化・トリミングなど行います。
+        守らなければ利用してはいけないレギュレーションなどございましたら、ご連絡ください。
       tickets: 'Attendee チケット'
-      tickets_included_in_plan: 'スポンサープランに含まれている枚数'
+      tickets_included_in_plan: 'サポータープランに含まれている枚数'
       tickets_additionally_request: '追加する枚数'
       tickets_total: '合計'
       others_help: |
@@ -157,20 +156,20 @@ ja:
       submit: '送信'
     closed:
       header: '申し込み期間ではありません'
-      closed: "スポンサーシップのお申し込みをご検討いただきありがとうございます。申し訳ありませんが、本イベントへのスポンサー申し込みは %{ts} に締め切られました。"
-      not_yet_open: "スポンサーシップのお申し込みをご検討いただきありがとうございます。申し訳ありませんが、本イベントへの申し込みはまだ開始しておりません。"
+      closed: "サポーターシップのお申し込みをご検討いただきありがとうございます。申し訳ありませんが、本イベントへのサポーター申し込みは %{ts} に締め切られました。"
+      not_yet_open: "サポーターシップのお申し込みをご検討いただきありがとうございます。申し訳ありませんが、本イベントへの申し込みはまだ開始しておりません。"
     create:
-      notice: "スポンサーシップへお申込みいただきありがとうございます。入力いただいたメールアドレスへ確認メールを送信しました。"
+      notice: "サポーターシップへお申込みいただきありがとうございます。入力いただいたメールアドレスへ確認メールを送信しました。"
     show:
-      header: "%{name} スポンサーポータル"
+      header: "%{name} サポーターポータル"
       your_application: "申込情報"
       edit: "修正"
       amendment_availability: "%{ts} まで修正することができます。"
       contact: "問合せ"
       contact_help: "質問や要望、相談はお気軽に下記へお問い合わせください。"
-      your_sponsorship_plan: "スポンサープラン"
+      your_sponsorship_plan: "サポータープラン"
       customized_plan: "カスタム"
-      sponsor_talk_eligible: "スポンサーセッション有り"
+      sponsor_talk_eligible: "サポーターセッション有り"
       included_guests: "プランに含まれているチケット"
       additional_guests: "追加でお取り置きしているチケット"
       guests_count:
@@ -186,7 +185,7 @@ ja:
         requested: 'CM映像放映対応 (申し込み済)'
         eligible: 'CM映像放映対応 (申し込み無し)'
       undetermined_plan: '未決定'
-      undetermined_plan_help: "スポンサーシップのプランがまだ確定していません。運営チームとご相談ください。"
+      undetermined_plan_help: "サポーターシップのプランがまだ確定していません。運営チームとご相談ください。"
       accepted: "確定済"
       pending: "未確定"
       pending_help: "申し込みはまだ未確定です。アナウンスをお待ちください。"
@@ -197,14 +196,14 @@ ja:
         new: '申請する'
         not_submitted: '未提出'
       tickets:
-        title: 'スポンサーチケット'
+        title: 'サポーターチケット'
         your_url: 'チケット取得URL'
         attendee_url: '招待 URL'
         booth_staff_url: 'ブーススタッフ招待 URL'
         help:
           direction: '受付のために、上記 URL の指示に従ってください。'
           requirement: 'ブーススタッフを含む全参加者について上記 URL から各々チケットを取得する必要があります。御社内の参加者へ上記 URL を忘れずに共有してください。'
-          unique: '本 URL についてはスポンサーごと固有のものとなり、スポンサーチケット利用にあたり認証や身元確認はありません。URL の取り扱いには気をつけていただくようお願い致します。'
+          unique: '本 URL についてはサポーターごと固有のものとなり、サポーターチケット利用にあたり認証や身元確認はありません。URL の取り扱いには気をつけていただくようお願い致します。'
     edit:
       amendment_availability: "%{ts} まで修正することができます。"
   exhibitions:
@@ -218,8 +217,8 @@ ja:
       submit: '送信'
   tickets:
     new:
-      header: '%{name} スポンサーチケット登録'
-      desc1: "このページで %{conference} のスポンサーチケットを取得できます。"
+      header: '%{name} サポーターチケット登録'
+      desc1: "このページで %{conference} のサポーターチケットを取得できます。"
       onsite:
         head: 'スマートフォンを利用して登録する:'
         desc: "このページをスマートフォンで表示して登録を行い、表示された QR コードを受付へ提示してください。登録は直前でも大丈夫です。"
@@ -232,9 +231,9 @@ ja:
         from: '(%{sponsorship})'
         email_help: '任意(推奨)。記入されたメールアドレスへチケットのリンクが送信されます。'
         attendee_help: "一般参加者のチケットです。通常はこれを選択してください。"
-        booth_staff_help: "スポンサーブース用のブースパスです。ブースパスではセッション聴講をすることはできません。"
+        booth_staff_help: "サポーターブース用のブースパスです。ブースパスではセッション聴講をすることはできません。"
         policy_help: "下記「登録」ボタンをもって下記ポリシーへ同意したものとみなします。"
-        submit_help: "このフォームを送信した時点ではスポンサーチケットの利用とはなりません。会場での受付をもってスポンサーチケットを利用したものとみなされます。"
+        submit_help: "このフォームを送信した時点ではサポーターチケットの利用とはなりません。会場での受付をもってサポーターチケットを利用したものとみなされます。"
     show:
       guide1: "本ページを受付へ提示してください。スマートフォンで表示することを推奨しますが、このページを印刷したものを提示することもできます。"
       guide2: "このチケットを再表示するためのリンクは記入されたメールアドレスへ送信されています。"
