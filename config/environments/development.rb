@@ -53,17 +53,35 @@ Rails.application.configure do
       enable_starttls_auto: true,
     }
     config.action_mailer.delivery_method = :smtp
+  elsif ENV['SAKURA_EMAIL_SMTP_ADDRESS']
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.default_url_options = {
+      host: ENV["DOMAIN"],
+      protocol: ENV["HTTP_OR_HTTPS"]
+    }
+    config.action_mailer.smtp_settings = {
+      address:        ENV['SAKURA_EMAIL_SMTP_ADDRESS'],
+      port:           '587',
+      domain:         ENV['SAKURA_EMAIL_SMTP_ADDRESS'],
+      authentication: :plain,
+      user_name:      ENV['SAKURA_EMAIL_USER'],
+      password:       ENV['SAKURA_EMAIL_PASS'],
+      enable_starttls_auto: true
+    }
+    config.action_mailer.default_options = { from: 'jawsfesta2025@event.jaws-ug.jp' }
   else
     config.action_mailer.delivery_method = :letter_opener_web
   end
 
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = {host: config.x.public_url_host, protocol: 'https'}
+  # config.action_mailer.default_url_options = {host: config.x.public_url_host, protocol: 'https'}
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -85,7 +103,7 @@ Rails.application.configure do
   # *.lo.example.org
   config.action_dispatch.tld_length = 2
 
-  config.x.org_name = ENV.fetch('ORG_NAME', 'Kaigi on Rails')
+  config.x.org_name = ENV.fetch('ORG_NAME', 'JAWS FESTA 2025')
 
   config.x.default_email_address = ENV.fetch('DEFAULT_EMAIL_ADDRESS',  'sponsorapp@localhost')
   config.x.default_email_reply_to = ENV.fetch('DEFAULT_EMAIL_REPLY_TO', config.x.default_email_address)

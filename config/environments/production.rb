@@ -105,8 +105,23 @@ Rails.application.configure do
       enable_starttls_auto: true,
     }
     config.action_mailer.delivery_method = :smtp
+  elsif ENV['SAKURA_EMAIL_SMTP_ADDRESS']
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.default_url_options = {
+      host: ENV["DOMAIN"], protocol: ENV["HTTP_OR_HTTPS"]
+    }
+    config.action_mailer.smtp_settings = {
+      address:        ENV['SAKURA_EMAIL_SMTP_ADDRESS'],
+      port:           '587',
+      domain:         ENV['SAKURA_EMAIL_SMTP_ADDRESS'],
+      authentication: :plain,
+      user_name:      ENV['SAKURA_EMAIL_USER'],
+      password:       ENV['SAKURA_EMAIL_PASS'],
+      enable_starttls_auto: true
+    }
+    config.action_mailer.default_options = { from: ENV['SAKURA_EMAIL_USER'] }
   end
-
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true

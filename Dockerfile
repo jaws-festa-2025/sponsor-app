@@ -10,7 +10,7 @@ RUN yarn run build
 
 ###
 
-FROM public.ecr.aws/sorah/ruby:3.2-dev as builder
+FROM public.ecr.aws/sorah/ruby:3.2.8-dev-noble as builder
 
 RUN apt-get update \
     && apt-get install -y libpq-dev git-core \
@@ -24,7 +24,7 @@ RUN bundle install --path /gems --jobs 100 --deployment --without development:te
 
 ###
 
-FROM public.ecr.aws/sorah/ruby:3.2
+FROM public.ecr.aws/sorah/ruby:3.2.8-noble
 
 RUN apt-get update \
     && apt-get install -y libpq5 \
@@ -36,6 +36,5 @@ COPY --from=builder /app/.bundle /app/.bundle
 COPY --from=nodebuilder /app/public/packs /app/public/packs
 COPY . /app/
 
-ENV PORT 3000
-ENV LANG C.UTF-8
+ENV PORT=3000 LANG=C.UTF-8
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
