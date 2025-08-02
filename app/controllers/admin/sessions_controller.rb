@@ -35,13 +35,8 @@ class Admin::SessionsController < ::ApplicationController
     case auth[:provider]
     when 'github'
       token = auth.fetch('credentials').fetch('token')
-      all_privileges = staff_member?(token)
-      restricted_privileges = nil
-      unless all_privileges
-        restricted_privileges = github_find_accessible_repos(token, Conference.where(allow_restricted_access: true).map(&:github_repo).compact.map(&:name).uniq)
-        if restricted_privileges.empty?
-          return render(status: 403, plain: "Forbidden (You have to be in any of these repo: #{Rails.application.config.x.github.repo}")
-        end
+      unless staff_member?(token)
+        return render(status: 403, plain: "Forbidden (You have to be in any of these repo: #{Rails.application.config.x.github.repo}")
       end
 
       staff = Staff.find_or_initialize_by(
@@ -58,7 +53,7 @@ class Admin::SessionsController < ::ApplicationController
     end
 
     session[:staff_id] = staff.id
-    return redirect_to(session.delete(:back_to) || '/')
+    redirect_to(session.delete(:back_to) || '/')
   end
 
   def destroy
@@ -69,11 +64,14 @@ class Admin::SessionsController < ::ApplicationController
   private
 
   def staff_member?(access_token)
-    octo = Octokit::Client.new(
+    authing_user_client = Octokit::Client.new(
       access_token: access_token,
     )
 
-    octo.repository?(Rails.application.config.x.github.repo)
+    client = Octokit::Client.new(access_token: ENV.fetch('GITHUB_PERSONAL_TOKEN'))
+    members = client.team_members(ENV.fetch('GITHUB_ADMIN_ACCOUNT_TEAM_ID'))
+
+    members.map(&:login).include?(authing_user_client.user.login)
   end
 
   def github_find_accessible_repos(access_token, repos)
