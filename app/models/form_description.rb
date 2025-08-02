@@ -13,7 +13,12 @@ class FormDescription < ApplicationRecord
       ticket_help
       commercial_message_movie_help
     ).each do |field|
-      self[:"#{field}_html"] = CommonMarker.render_html(self[field], %i(GITHUB_PRE_LANG), %i(tagfilter autolink table strikethrough))
+      self[:"#{field}_html"] =
+        CommonMarker.render_html(
+          self[field],
+          %i(GITHUB_PRE_LANG),
+          %i(tagfilter autolink table strikethrough)
+        ).gsub(/a\s+href=/i, 'a target="_blank" href=')
     end
   end
 end

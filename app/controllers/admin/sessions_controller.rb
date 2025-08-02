@@ -46,7 +46,7 @@ class Admin::SessionsController < ::ApplicationController
         name: auth.fetch('info').fetch('name') || auth.fetch('info').fetch('nickname'),
         avatar_url: auth.fetch('info').fetch('image'),
         login: auth.fetch('info').fetch('nickname'),
-        restricted_repos: restricted_privileges,
+        restricted_repos: nil,
       )
     else
       render status: 404, plain: "Unsupported provider: #{auth[:provider]}"
@@ -70,7 +70,6 @@ class Admin::SessionsController < ::ApplicationController
 
     client = Octokit::Client.new(access_token: ENV.fetch('GITHUB_PERSONAL_TOKEN'))
     members = client.team_members(ENV.fetch('GITHUB_ADMIN_ACCOUNT_TEAM_ID'))
-
     members.map(&:login).include?(authing_user_client.user.login)
   end
 
