@@ -174,4 +174,6 @@ Rails.application.configure do
   config.x.mailgun.api_key = ENV['MAILGUN_API_KEY']
 
   config.x.sentry.dsn = ENV['SENTRY_DSN']
+
+  config.time_zone = ENV.fetch('TIMEZONE', 'Asia/Tokyo')
 end
