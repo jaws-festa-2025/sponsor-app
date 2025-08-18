@@ -59,3 +59,4 @@ group :development do
 end
 
 gem 'dotenv-rails'
+gem 'concurrent-ruby', '1.3.4'
