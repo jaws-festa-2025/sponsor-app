@@ -25,13 +25,12 @@ class GenerateSponsorsYamlFileJob < ApplicationJob
       .includes(:asset_file)
 
     if preview
-      sponsorships = sponsorships.have_presence
-    else
       sponsorships = sponsorships.dump_presence
+    else
+      sponsorships = sponsorships.have_presence
     end
 
-    sponsorships = sponsorships.group_by { |_| _.plan.name.downcase.gsub(/[^a-z0-9]/, '_') }
-
+    sponsorships = sponsorships.group_by { |_| _.plan.name.downcase }
 
     @last = SponsorshipEditingHistory.where(sponsorship_id: sponsorships.each_value.flat_map { |_| _.map(&:id) }).order(id: :desc).first
     unless @last # this is falsy if no sponsorships have presense
@@ -45,7 +44,7 @@ class GenerateSponsorsYamlFileJob < ApplicationJob
         base_plan_slug,
         {
           base_plan: sponsorships[0].plan.name.downcase,
-          plans: sponsorships.group_by { |_| _.plan_name.downcase.gsub(/[^a-z0-9]/, '_') }.map do |plan_slug, sponsors|
+          plans: sponsorships.group_by { |_| _.plan_name.downcase }.map do |plan_slug, sponsors|
             [
               plan_slug,
               {
