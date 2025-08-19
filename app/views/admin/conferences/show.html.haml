@@ -71,6 +71,7 @@
       .card-body
         .mb-4
           = link_to "Generate YAML", sponsors_yml_conference_path(), class: 'btn btn-secondary'
+          = link_to "Generate YAML(with Preview)", sponsors_yml_conference_path(preview: true), class: 'btn btn-secondary'
         - @conference.sponsorships.where(withdrawn_at: nil).includes(:plan).order(id: :asc).group_by(&:plan).sort_by {|p, _| p&.rank || 9999 }.each do |plan, sponsorships|
           %h6
             = plan&.name || 'Undetermined'

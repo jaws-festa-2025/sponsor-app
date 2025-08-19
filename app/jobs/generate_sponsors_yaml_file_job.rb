@@ -1,10 +1,10 @@
 class GenerateSponsorsYamlFileJob < ApplicationJob
   GITHUB_MEDIA_TYPE = 'application/vnd.github.machine-man-preview+json'
 
-  def perform(conference, push: true)
+  def perform(conference, push: true, preview: false)
     @conference = conference
 
-    yaml_data # to generate
+    yaml_data(preview:) # to generate
     if push
       ApplicationRecord.transaction do
         @last&.lock!
@@ -17,14 +17,21 @@ class GenerateSponsorsYamlFileJob < ApplicationJob
     @conference.github_repo
   end
 
-  def data
+  def data(preview: false)
     sponsorships = @conference.sponsorships
-      .have_presence
       .order(id: :asc)
       .includes(:plan)
       .includes(:organization)
       .includes(:asset_file)
-      .group_by { |_| _.plan.name.downcase.gsub(/[^a-z0-9]/, '_') }
+
+    if preview
+      sponsorships = sponsorships.have_presence
+    else
+      sponsorships = sponsorships.dump_presence
+    end
+
+    sponsorships = sponsorships.group_by { |_| _.plan.name.downcase.gsub(/[^a-z0-9]/, '_') }
+
 
     @last = SponsorshipEditingHistory.where(sponsorship_id: sponsorships.each_value.flat_map { |_| _.map(&:id) }).order(id: :desc).first
     unless @last # this is falsy if no sponsorships have presense
@@ -63,10 +70,10 @@ class GenerateSponsorsYamlFileJob < ApplicationJob
     end.to_h
   end
 
-  def yaml_data
+  def yaml_data(preview: false)
     return @yaml_data if defined? @yaml_data
 
-    data = self.data()
+    data = self.data(preview:)
     @yaml_data = data ? [
       "# last_editing_history: #{@last_id}",
       data.to_yaml,

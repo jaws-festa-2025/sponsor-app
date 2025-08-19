@@ -54,6 +54,7 @@ class Sponsorship < ApplicationRecord
   scope :not_withdrawn, -> { where(withdrawn_at: nil) }
   scope :accepted, -> { where.not(accepted_at: nil) }
   scope :have_presence, -> { where(suspended: false).merge(Sponsorship.active).merge(Sponsorship.plan_determined) }
+  scope :dump_presence,  -> { where(suspended: false).merge(Sponsorship.not_withdrawn).merge(Sponsorship.plan_determined) }
 
   scope :includes_contacts, -> { includes(:contact, :alternate_billing_contact) }
   scope :includes_requests, -> { includes(:billing_request, :customization_request, :note) }

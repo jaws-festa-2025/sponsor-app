@@ -22,11 +22,11 @@ class Admin::ConferencesController < Admin::ApplicationController
   end
 
   def sponsors_yml
-    render plain: GenerateSponsorsYamlFileJob.new(@conference, push: false).tap(&:perform_now).yaml_data
+    render plain: GenerateSponsorsYamlFileJob.new(@conference, push: false, preview: params[:preview].to_s == 'true').tap(&:perform_now).yaml_data
   end
 
   def sponsors_json
-    render plain: GenerateSponsorsYamlFileJob.new(@conference, push: false).tap(&:perform_now).json_data
+    render plain: GenerateSponsorsYamlFileJob.new(@conference, push: false, preview: params[:preview].to_s == 'true').tap(&:perform_now).json_data
   end
 
   def table_view
