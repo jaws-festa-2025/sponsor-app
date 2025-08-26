@@ -1,3 +1,4 @@
+require 'commonmarker'
 module MarkdownBody
   def html
     if self.persisted?

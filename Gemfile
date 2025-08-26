@@ -9,7 +9,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'connection_pool'
 
 gem 'addressable'
-gem 'commonmarker'
+gem "commonmarker", "~> 0.23.10"
 gem 'aws-sdk-core' # STS
 gem 'aws-sdk-s3'
 gem 'omniauth', '< 2'
