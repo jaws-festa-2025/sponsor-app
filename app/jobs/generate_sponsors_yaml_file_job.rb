@@ -59,6 +59,8 @@ class GenerateSponsorsYamlFileJob < ApplicationJob
                   name: _.name,
                   url: _.url.strip,
                   profile: _.profile,
+                  note: _.note.body,
+                  custom: _.customization_request.body
                 }
               end,
               },
