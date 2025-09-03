@@ -64,7 +64,7 @@ ja:
 
   layouts:
     application:
-      brand: 'Sponsorships'
+      brand: 'Supporterships'
       conferences: '全てのイベント'
       sponsorships_switch: '申込済みのサポーターシップ'
       login: 'ログイン'

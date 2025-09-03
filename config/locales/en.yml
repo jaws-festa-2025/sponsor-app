@@ -63,9 +63,9 @@ en:
 
   layouts:
     application:
-      brand: 'Sponsorships'
+      brand: 'Supporterships'
       conferences: 'All Conferences'
-      sponsorships_switch: 'Your Sponsorships'
+      sponsorships_switch: 'Your Supporterships'
       login: 'Log in'
       logout: 'Log out'
 

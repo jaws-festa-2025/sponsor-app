@@ -1,6 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
   default(
-    from: "#{Rails.application.config.x.org_name} Sponsorships <#{ENV['SAKURA_EMAIL_USER']}>",
+    from: "#{Rails.application.config.x.org_name} Supporterships <#{ENV['SAKURA_EMAIL_USER']}>",
     reply_to: ENV['SAKURA_EMAIL_USER'],
   )
 
